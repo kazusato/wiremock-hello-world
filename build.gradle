@@ -1,0 +1,35 @@
+plugins {
+    id 'java'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'com.github.tomakehurst:wiremock-standalone:2.27.2'
+}
+
+task dummy {
+    doLast {
+        sourceSets.test.runtimeClasspath.forEach {println(it.path) }
+        println("==== WIREMOCK ====")
+        sourceSets.test.runtimeClasspath
+                .filter { it.path.contains("wiremock-standalone") }
+                .forEach {println(it.path) }
+    }
+}
+
+task runWiremock(type: JavaExec) {
+    classpath = sourceSets.test.runtimeClasspath
+    main = 'com.github.tomakehurst.wiremock.standalone.WireMockServerRunner'
+}
+
+task runWiremockCommand(type: Exec) {
+    def jarPath = sourceSets.test.runtimeClasspath.filter { it.path.contains("wiremock-standalone") }.asPath
+    executable 'java'
+    args '-jar', jarPath, '--port', '8888'
+}

@@ -1,0 +1,22 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/list"
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "resultList": [
+        {
+          "name": "AAA"
+        },
+        {
+          "name": "BBB"
+        }
+      ]
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

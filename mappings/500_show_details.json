@@ -1,0 +1,15 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/details"
+  },
+  "response": {
+    "status": 500,
+    "jsonBody": {
+      "message": "Unexpected error"
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}
